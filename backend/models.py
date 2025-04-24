@@ -11,7 +11,7 @@ db=SQLAlchemy()
 class User(db.Model, SerializerMixin):
     __tablename__='users'
     id=db.Column(db.Integer, primary_key=True)
-    name=db.Column(db.String(100), required=True)
+    name=db.Column(db.String(100), nullable=False)
     email=db.Column(db.String(100), unique=True)
     contact=db.Column(db.Integer(50))
     password=db.Column(db.String(50))
@@ -28,7 +28,7 @@ class User(db.Model, SerializerMixin):
 class Program(db.Model, SerializerMixin):
     __tablename__='programs'
     id=db.Column(db.Integer, primary_key=True)
-    name=db.Column(db.String(255), required=True)
+    name=db.Column(db.String(255), nullable=False)
     description=db.Column(db.String)
 
     enrollments=db.relationship("Enrollment", backref="program", lazy=True)
