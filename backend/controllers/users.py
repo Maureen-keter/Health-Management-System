@@ -1,6 +1,6 @@
 from flask import Flask,request, make_response, jsonify
 from flask_restful import Api, Resource, abort
-from models import User
+from models import User, db
 
 class Users(Resource):
     def get(self):
@@ -12,6 +12,12 @@ class Users(Resource):
         existing_user=User.query.filter_by(email=data['email'].first())
         if existing_user:
             abort(409, detail="User already exists")
+        new_user=User(name=data['name'], email=data['email'], contact=data['contact'], password=data['password'])
+        db.session.add(new_user)
+        db.session.commit()
+
+        return make_response(jsonify(new_user.to_dict()), 201)
+
     
 
         
