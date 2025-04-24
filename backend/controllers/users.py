@@ -10,6 +10,8 @@ class Users(Resource):
     def post(self):
         data=request.get_json()
         existing_user=User.query.filter_by(email=data['email'].first())
+        if existing_user:
+            abort(409, detail="User already exists")
     
 
         
