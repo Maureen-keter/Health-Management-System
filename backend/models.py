@@ -12,6 +12,7 @@ class User(db.Model, SerializerMixin):
     id=db.Column(db.Integer, primary_key=True)
     name=db.Column(db.String(100) required=True)
     email=db.Column(db.String(100) unique=True)
+    contact=db.Column(db.Integer(50))
     password=db.Column(db.String(50))
 
     @validates('email')
