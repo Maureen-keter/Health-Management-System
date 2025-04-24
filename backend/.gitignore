@@ -2,4 +2,27 @@
 .env
 .env.*
 
+# Database
+# Ignore Python cache files
+__pycache__/
+*.pyc
+*.pyo
 
+# Ignore virtual environment (if any)
+venv/
+.env
+
+# Ignore database files (local SQLite DB)
+instance/*.db
+*.sqlite3
+
+# Ignore environment variable file
+.env
+
+# Ignore IDE/editor files
+.vscode/
+.idea/
+
+# Ignore migrations cache files (but keep actual migration scripts)
+migrations/__pycache__/
+migrations/*.pyc

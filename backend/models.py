@@ -41,6 +41,4 @@ class Enrollment(db.Model, SerializerMixin):
     user_id=db.Column(db.Integer, db.ForeignKey('users.id'))
     program_id=db.Column(db.Integer, db.ForeignKey('programs.id'))
 
-    user = db.relationship('User', back_populates='enrollments')
-    program = db.relationship('Program', back_populates='enrollments')
     
