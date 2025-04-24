@@ -20,3 +20,12 @@ class User(db.Model, SerializerMixin):
         if not re.match(r"[^@]+@[^@]+\.[^@]+", email):
             raise ValueError("Invalid email address")
         return email
+    
+
+class Program(db.Model, SerializerMixin):
+    __tablename__='programs'
+    id=db.Column(db.Integer, primary_key=True)
+    name=db.Column(db.Sring(255), required=True)
+    description=db.Column(db.String)
+
+
