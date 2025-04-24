@@ -28,7 +28,7 @@ class User(db.Model, SerializerMixin):
 class Program(db.Model, SerializerMixin):
     __tablename__='programs'
     id=db.Column(db.Integer, primary_key=True)
-    name=db.Column(db.Sring(255), required=True)
+    name=db.Column(db.String(255), required=True)
     description=db.Column(db.String)
 
     enrollments=db.relationship("Enrollment", backref="program", lazy=True)
@@ -36,11 +36,11 @@ class Program(db.Model, SerializerMixin):
 class Enrollment(db.Model, SerializerMixin):
     __tablename__='enrollments'
     id=db.Column(db.Integer, primary_key=True)
-    published_date = db.Column(db.DateTime, default=datetime.utcnow)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
     user_id=db.Column(db.Integer, db.ForeignKey('users.id'))
     program_id=db.Column(db.Integer, db.ForeignKey('programs.id'))
 
-    clients = db.relationship('Client', back_populates='enrollments')
-    programs = db.relationship('Program', back_populates='enrollments')
+    user = db.relationship('User', back_populates='enrollments')
+    program = db.relationship('Program', back_populates='enrollments')
     
