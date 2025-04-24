@@ -36,7 +36,7 @@ class Program(db.Model, SerializerMixin):
 class Enrollment(db.Model, SerializerMixin):
     __tablename__='enrollments'
     id=db.Column(db.Integer, primary_key=True)
-    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    created_at = db.Column(db.Date, default=datetime.utcnow().date) 
 
     user_id=db.Column(db.Integer, db.ForeignKey('users.id'))
     program_id=db.Column(db.Integer, db.ForeignKey('programs.id'))
