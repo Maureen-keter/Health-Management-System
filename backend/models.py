@@ -16,6 +16,8 @@ class User(db.Model, SerializerMixin):
     contact=db.Column(db.Integer(50))
     password=db.Column(db.String(50))
 
+    enrollments=db.relationship("Enrollment", backref="user" lazy=True)
+
     @validates('email')
     def validate_email(self, key, email):
         if not re.match(r"[^@]+@[^@]+\.[^@]+", email):
