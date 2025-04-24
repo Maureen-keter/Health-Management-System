@@ -16,7 +16,7 @@ class User(db.Model, SerializerMixin):
     contact=db.Column(db.Integer(50))
     password=db.Column(db.String(50))
 
-    enrollments=db.relationship("Enrollment", backref="user" lazy=True)
+    enrollments=db.relationship("Enrollment", backref="user", lazy=True)
 
     @validates('email')
     def validate_email(self, key, email):
@@ -30,6 +30,8 @@ class Program(db.Model, SerializerMixin):
     id=db.Column(db.Integer, primary_key=True)
     name=db.Column(db.Sring(255), required=True)
     description=db.Column(db.String)
+
+    enrollments=db.relationship("Enrollment", backref="program", lazy=True)
 
 class Enrollment(db.Model, SerializerMixin):
     __tablename__='enrollments'
