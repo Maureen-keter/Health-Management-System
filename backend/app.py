@@ -37,6 +37,12 @@ class Home(Resource):
 api.add_resource(Home, '/')
 api.add_resource(Users, '/users')
 api.add_resource(UserById, '/users/<int:id>')
+api.add_resource(Programs, '/programs')
+api.add_resource(ProgramById, '/programs/<int:id>')
+api.add_resource(Enrollments, '/enrollments')
+api.add_resource(EnrollmentById, '/enrollments/<int:id>')
+
+
 
 
 if __name__=='__main__':
