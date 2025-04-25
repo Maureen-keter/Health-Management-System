@@ -14,3 +14,11 @@ class Enrollments(Resource):
         db.session.commit()
 
         return make_response(jsonify(new_enrollment.to_dict()), 201)
+
+class EnrollmentById(Resource):
+    def get(self, id):
+        enrollment = Enrollment.query.filter_by(id=id)
+        if not enrollment:
+            abort(404, detail="enrollment not found")
+
+        return make_response(jsonify(enrollment.to_dict()), 200)
