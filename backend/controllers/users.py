@@ -17,16 +17,16 @@ class Users(Resource):
 
     def post(self):
         data = request.get_json()
-        existing_user = User.query.filter_by(email=data['email']).first()  # Corrected .first()
+        existing_user = User.query.filter_by(email=data['email']).first()
         if existing_user:
-            abort(409, detail="User already exists")
-
-        hashed_password = bcrypt.generate_password_hash(data['password']).decode('utf-8')
-        new_user = User(name=data['name'], email=data['email'], contact=data['contact'], password=hashed_password)
+            abort(409, detail="User Already Exists")
+        hashed_password = bcrypt.generate_password_hash(data['password'])
+        new_user = User(name=data['name'], email=data['email'], contact=data["contact"], password=hashed_password)
         db.session.add(new_user)
         db.session.commit()
-
         return make_response(jsonify(new_user.to_dict()), 201)
+
+
     
 
 class UserLogin(Resource):
@@ -70,6 +70,11 @@ class UserById(Resource):
         if not user:
             abort(404, detail=f'user with {id=} does not exist')
         data=request.get_json()
+        if 'password' in data:
+            hashed_password = bcrypt.generate_password_hash(data['password']).decode('utf-8')
+            data['password'] = hashed_password
+
+        # Update user attributes
         for key, value in data.items():
             if value is None:
                 continue
