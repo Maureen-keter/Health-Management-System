@@ -8,6 +8,8 @@ load_dotenv()
 import os
 
 from controllers.users import Users, UserById
+from controllers.programs import Programs, ProgramById
+from controllers.enrollments import Enrollments, EnrollmentById
 
 
 app= Flask(__name__)
