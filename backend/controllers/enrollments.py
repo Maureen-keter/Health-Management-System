@@ -22,3 +22,18 @@ class EnrollmentById(Resource):
             abort(404, detail="enrollment not found")
 
         return make_response(jsonify(enrollment.to_dict()), 200)
+
+    def patch(self,id):
+        enrollment = Enrollment.query.filter_by(id=id)
+        if not enrollment:
+            abort(404, detail=f'Enrollment with {id=} does not exist')
+            data=request.get_json()
+        for key, value in data.items():
+            if value is None:
+                continue
+            setattr(enrollment, key, value)
+        db.session.commit()
+        return make_response(jsonify(enrollment.to_dict()), 200)
+
+
+    
