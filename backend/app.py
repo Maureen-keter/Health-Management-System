@@ -4,9 +4,7 @@ from flask_migrate import Migrate
 from flask_restful import Resource, Api
 from flask_cors import CORS
 from datetime import timedelta
-from dotenv import load_dotenv
-load_dotenv()
-import os
+
 
 from controllers.users import Users, UserById, UserLogin, UserByToken,jwt
 from controllers.programs import Programs, ProgramById
