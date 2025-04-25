@@ -10,6 +10,8 @@ db=SQLAlchemy()
 
 class User(db.Model, SerializerMixin):
     __tablename__='users'
+    # serialize_rules = ('-enrollments')
+
     id=db.Column(db.Integer, primary_key=True)
     name=db.Column(db.String(100), nullable=False)
     email=db.Column(db.String(100), unique=True)
@@ -27,6 +29,8 @@ class User(db.Model, SerializerMixin):
 
 class Program(db.Model, SerializerMixin):
     __tablename__='programs'
+
+    serialize_rules = ('-enrollments',)
     id=db.Column(db.Integer, primary_key=True)
     name=db.Column(db.String(255), nullable=False)
     description=db.Column(db.String)
@@ -35,6 +39,8 @@ class Program(db.Model, SerializerMixin):
 
 class Enrollment(db.Model, SerializerMixin):
     __tablename__='enrollments'
+
+    serialize_rules = ('-user', '-program')
     id=db.Column(db.Integer, primary_key=True)
     created_at = db.Column(db.Date, default=datetime.utcnow().date) 
 
