@@ -12,8 +12,7 @@ function ProgramList({ programs, onEdit, onDelete }) {
         programs.map((program) => (
           <ProgramItem
             key={program.id}
-            name={program.name}
-            description={program.description}
+            program
             onEdit={onEdit}
             onDelete={onDelete}
           />
