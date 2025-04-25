@@ -40,7 +40,7 @@ The project is deployed on [Render](https://render.com/) for public access and i
 ## 🌐 Live Deployment
 
 > 🔗 **Live URL**:  
-> `https://health-management-system-da4n.onrender.com`
+> `https://health-management-system-ghta.onrender.com`
 
 ---
 
