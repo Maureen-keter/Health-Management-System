@@ -36,4 +36,10 @@ class EnrollmentById(Resource):
         return make_response(jsonify(enrollment.to_dict()), 200)
 
 
-    
+    def delete(self, id):
+        enrollment = Enrollment.query.filter_by(id=id)
+        if not enrollment:
+            abort(404, detail=f'enrollment with {id=} does not exist')
+        db.session.delete(enrollment)
+        db.session.commit()
+        return{"message": f"enrollment with {id=} has been deleted"}
