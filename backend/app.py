@@ -5,6 +5,10 @@ from flask_restful import Resource, Api
 from flask_cors import CORS
 from datetime import timedelta
 
+import os
+
+from dotenv import load_dotenv
+load_dotenv()
 
 from controllers.users import Users, UserById, UserLogin, UserByToken,jwt
 from controllers.programs import Programs, ProgramById
@@ -13,7 +17,7 @@ from controllers.enrollments import Enrollments, EnrollmentById
 
 app= Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI']='sqlite:///health.db'
+app.config['SQLALCHEMY_DATABASE_URI']=os.environ.get('DATABASE_URI')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False
 app.json.compact = False
 app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(hours=24)
