@@ -1,6 +1,7 @@
 from flask import Flask, request, make_response, jsonify
 from flask_restful import Api, Resource, abort
 from models import Enrollment, db
+from datetime import datetime
 
 class Enrollments(Resource):
     def get(self):
@@ -9,7 +10,11 @@ class Enrollments(Resource):
 
     def post(self):
         data = request.get_json()
-        new_enrollment = Enrollment(created_at=data['created_at'], user_id=data['user_id'], program_id=data['program_id'])
+        try:
+            created_at = datetime.strptime(data.get('created_at'), '%Y-%m-%d').date() if data.get('created_at') else None
+        except ValueError:
+            return make_response({"error": "Invalid date format. Use YYYY-MM-DD."}, 400)
+        new_enrollment = Enrollment(created_at=created_at, user_id=data['user_id'], program_id=data['program_id'])
         db.session.add(new_enrollment)
         db.session.commit()
 
@@ -17,17 +22,17 @@ class Enrollments(Resource):
 
 class EnrollmentById(Resource):
     def get(self, id):
-        enrollment = Enrollment.query.filter_by(id=id)
+        enrollment = Enrollment.query.filter_by(id=id).first()
         if not enrollment:
             abort(404, detail="enrollment not found")
 
         return make_response(jsonify(enrollment.to_dict()), 200)
 
     def patch(self,id):
-        enrollment = Enrollment.query.filter_by(id=id)
+        enrollment = Enrollment.query.filter_by(id=id).first()
         if not enrollment:
             abort(404, detail=f'Enrollment with {id=} does not exist')
-            data=request.get_json()
+        data=request.get_json()
         for key, value in data.items():
             if value is None:
                 continue
@@ -37,7 +42,7 @@ class EnrollmentById(Resource):
 
 
     def delete(self, id):
-        enrollment = Enrollment.query.filter_by(id=id)
+        enrollment = Enrollment.query.filter_by(id=id).first()
         if not enrollment:
             abort(404, detail=f'enrollment with {id=} does not exist')
         db.session.delete(enrollment)

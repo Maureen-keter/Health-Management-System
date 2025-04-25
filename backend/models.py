@@ -42,7 +42,7 @@ class Enrollment(db.Model, SerializerMixin):
 
     serialize_rules = ('-user', '-program')
     id=db.Column(db.Integer, primary_key=True)
-    created_at = db.Column(db.Date, default=datetime.utcnow().date) 
+    created_at = db.Column(db.Date, default=lambda: datetime.utcnow().date())
 
     user_id=db.Column(db.Integer, db.ForeignKey('users.id'))
     program_id=db.Column(db.Integer, db.ForeignKey('programs.id'))
