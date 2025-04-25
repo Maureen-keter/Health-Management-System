@@ -86,4 +86,12 @@ class UserById(Resource):
         db.session.commit()
         return{"message": f"user with {id=} has been deleted"}
 
-
+class UserByToken(Resource):
+    @jwt_required()
+    def get(self):
+        current_user_email = get_jwt_identity()
+        print(current_user_email)
+        current_user = User.query.filter_by(email=current_user_email).first()
+        if not current_user:
+            abort(404, detail="User not found")
+        return make_response(jsonify(current_user.to_dict()), 200)
