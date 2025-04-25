@@ -15,11 +15,11 @@ from controllers.enrollments import Enrollments, EnrollmentById
 
 app= Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI']=os.getenv('SQLALCHEMY_DATABASE_URI')
+app.config['SQLALCHEMY_DATABASE_URI']='sqlite:///health.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False
 app.json.compact = False
 app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(hours=24)
-app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
+app.config['SECRET_KEY'] =('tvbubvhriefjkwerty=')
 
 db.init_app(app)
 migrate=Migrate(app,db)
