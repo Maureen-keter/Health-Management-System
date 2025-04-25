@@ -43,4 +43,17 @@ class UserById(Resource):
 
         return make_response(jsonify(user_data), 200)
 
-    
+    def patch(self,id):
+        user=User.query.get(id)
+        if not user:
+            abort(404, detail=f'user with {id=} does not exist')
+        data=request.get_json()
+        for key, value in data.items():
+            if value is None:
+                continue
+            setattr(user, key, value)
+        db.session.commit()
+        return make_response(jsonify(user.to_dict()), 200)
+
+
+
