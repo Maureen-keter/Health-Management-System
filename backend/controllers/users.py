@@ -56,4 +56,10 @@ class UserById(Resource):
         return make_response(jsonify(user.to_dict()), 200)
 
 
-
+    def delete(self, id):
+        user=User.query.filter_by(id=id).first()
+        if not user:
+            abort(404, detail=f'user with {id=} does not exist')
+        db.session.delete(user)
+        db.session.commit()
+        return{"message": f"user with {id=} has been deleted"}
