@@ -10,6 +10,9 @@ sqlalchemy = "*"
 flask-migrate = "*"
 dotenv = "*"
 flask-restful = "*"
+flask-bcrypt = "*"
+gunicorn = "*"
+psycopg2-binary = "*"
 
 [dev-packages]
 

@@ -48,3 +48,6 @@ class EnrollmentById(Resource):
         db.session.delete(enrollment)
         db.session.commit()
         return{"message": f"enrollment with {id=} has been deleted"}
+
+
+

@@ -1,6 +1,14 @@
 from flask import Flask, request, make_response, jsonify
-from flask_restful import Api, Resource, abort
-from models import User, Enrollment, db
+from flask_restful import Resource, abort
+from models import User, db
+from flask_bcrypt import Bcrypt
+from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
+
+
+bcrypt = Bcrypt()
+jwt = JWTManager()
+
+
 
 class Users(Resource):
     def get(self):
@@ -12,11 +20,25 @@ class Users(Resource):
         existing_user = User.query.filter_by(email=data['email']).first()  # Corrected .first()
         if existing_user:
             abort(409, detail="User already exists")
-        new_user = User(name=data['name'], email=data['email'], contact=data['contact'], password=data['password'])
+
+        hashed_password = bcrypt.generate_password_hash(data['password']).decode('utf-8')
+        new_user = User(name=data['name'], email=data['email'], contact=data['contact'], password=hashed_password)
         db.session.add(new_user)
         db.session.commit()
 
         return make_response(jsonify(new_user.to_dict()), 201)
+    
+
+class UserLogin(Resource):
+    def post(self):
+        data = request.get_json()
+        user = User.query.filter_by(email=data['email']).first()
+        if not user:
+            abort(404, detail="User does not exist")
+        if not bcrypt.check_password_hash(user.password, data['password']):
+            abort(403, detail="Password is not correct")
+        token = create_access_token(identity=user.email)
+        return {"jwt-access-token": token}
 
 class UserById(Resource):
     def get(self, id):
@@ -63,3 +85,5 @@ class UserById(Resource):
         db.session.delete(user)
         db.session.commit()
         return{"message": f"user with {id=} has been deleted"}
+
+
