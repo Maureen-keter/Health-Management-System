@@ -36,4 +36,10 @@ class ProgramById(Resource):
         return make_response(jsonify(program.to_dict()), 200)
 
 
-    
+    def delete(self, id):
+        program = Program.query.filter_by(id=id).first()
+        if not program:
+            abort(404, detail=f'program with {id=} does not exist')
+        db.session.delete(program)
+        db.session.commit()
+        return{"message": f"program with {id=} has been deleted"}
