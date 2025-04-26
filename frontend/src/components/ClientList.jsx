@@ -91,6 +91,53 @@ function ClientList({ clients, onUpdateClient, onDeleteClient, onClientClick }) 
           ))
         )}
       </ul>
+
+      {editingClientId && (
+        <form onSubmit={handleEditSubmit} className="edit-client-form">
+          <h3>Edit Client</h3>
+          <label>
+            Name:
+            <input
+              type="text"
+              name="name"
+              value={editFormData.name}
+              onChange={handleEditChange}
+              required
+            />
+          </label>
+          <label>
+            Email:
+            <input
+              type="email"
+              name="email"
+              value={editFormData.email}
+              onChange={handleEditChange}
+              required
+            />
+          </label>
+          <label>
+            Contact:
+            <input
+              type="text"
+              name="contact"
+              value={editFormData.contact}
+              onChange={handleEditChange}
+              required
+            />
+          </label>
+          <label>
+            Password:
+            <input
+              type="password"
+              name="password"
+              value={editFormData.password}
+              onChange={handleEditChange}
+              required
+            />
+          </label>
+          <button type="submit">Save Changes</button>
+        </form>
+      )}
     </div>
   );
 }
