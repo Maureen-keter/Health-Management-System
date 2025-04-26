@@ -5,7 +5,7 @@ import NavBar from './components/NavBar';
 import ClientList from './components/ClientList';
 import ClientForm from './components/ClientForm';
 import EnrollForm from './components/EnrollForm';
-import Home from './components/Home';
+// import Home from './components/Home';
 import ClientPage from './components/pages/ClientPage';
 
 
