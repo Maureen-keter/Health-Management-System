@@ -35,6 +35,13 @@ function ClientList({ clients, onUpdateClient, onDeleteClient, onClientClick }) 
       password: client.password,
     });
   }
+  function handleEditChange(e) {
+    const { name, value } = e.target;
+    setEditFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  }
 
   return (
     <div className="client-list-container">
