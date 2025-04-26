@@ -143,4 +143,3 @@ function ClientList({ clients, onUpdateClient, onDeleteClient, onClientClick }) 
 }
 
 export default ClientList;
-
