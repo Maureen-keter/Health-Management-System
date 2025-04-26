@@ -6,6 +6,7 @@ import ClientForm from "../ClientForm";
 
 function ClientPage() {
   const [clients, setClients] = useState([]); 
+  const [selectedClient, setSelectedClient] = useState(null); 
 
 
   useEffect(() => {
