@@ -43,6 +43,31 @@ function ClientList({ clients, onUpdateClient, onDeleteClient, onClientClick }) 
     }));
   }
 
+  function handleEditSubmit(e) {
+    e.preventDefault();
+
+    fetch(`${BASE_URL}/users/${editingClientId}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(editFormData),
+    })
+      .then((res) => res.json())
+      .then((updatedClient) => {
+        onUpdateClient(updatedClient);
+        setEditingClientId(null);
+        setEditFormData({
+          name: "",
+          email: "",
+          contact: "",
+          password: "",
+        });
+      })
+      .catch((err) => console.error("Error updating client:", err));
+  }
+
+
   return (
     <div className="client-list-container">
       
