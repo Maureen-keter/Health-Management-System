@@ -9,6 +9,15 @@ function EnrollForm({ onEnroll }) {
     programId: ""
   });
 
+  useEffect(() => {
+    fetch(`${BASE_URL}/users`)
+      .then((res) => res.json())
+      .then(setClients);
+
+    fetch(`${BASE_URL}/programs`)
+      .then((res) => res.json())
+      .then(setPrograms);
+  }, []);
 
 
   return (
