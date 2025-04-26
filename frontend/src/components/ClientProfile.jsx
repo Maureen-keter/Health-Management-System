@@ -20,7 +20,17 @@ function ClientProfile({ client }) {
       <p>Contact: {client.contact}</p>
 
       <h4>Enrolled Programs</h4>
-      
+      <ul>
+        {programs.length > 0 ? (
+          programs.map((program) => (
+            <li key={program.id}>
+              <strong>{program.name}</strong> - {program.description}
+            </li>
+          ))
+        ) : (
+          <p>No programs enrolled.</p>
+        )}
+      </ul>
     </div>
   );
 }
