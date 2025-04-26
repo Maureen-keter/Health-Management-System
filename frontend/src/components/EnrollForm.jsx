@@ -47,10 +47,35 @@ function EnrollForm({ onEnroll }) {
 
 
   return (
-    <form  className="enrollment-form">
+    <form onSubmit={handleSubmit} className="enrollment-form">
       <h3>Enroll Client to Program</h3>
 
-      </form>
+      <label>
+        Select Client:
+        <select name="clientId" value={formData.clientId} onChange={handleChange} required>
+          <option value="">-- Select Client --</option>
+          {clients.map(client => (
+            <option key={client.id} value={client.id}>
+              {client.name} ({client.email})
+            </option>
+          ))}
+        </select>
+      </label>
+
+      <label>
+        Select Program:
+        <select name="programId" value={formData.programId} onChange={handleChange} required>
+          <option value="">-- Select Program --</option>
+          {programs.map(program => (
+            <option key={program.id} value={program.id}>
+              {program.name}
+            </option>
+          ))}
+        </select>
+      </label>
+
+      <button type="submit">Enroll</button>
+    </form>
   );
 }
 
