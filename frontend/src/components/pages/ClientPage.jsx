@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { BASE_URL } from '../../api';
+import ClientList from "../ClientList";
 
 
 function ClientPage() {
@@ -18,6 +19,7 @@ function ClientPage() {
   return (
     <div className="client-page">
       <h1>Client Management</h1>
+      <ClientList clients={clients}/>
     </div>
       
       )
