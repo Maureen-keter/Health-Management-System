@@ -6,6 +6,7 @@ import ClientForm from './components/ClientForm';
 import EnrollForm from './components/EnrollForm';
 import Home from './components/Home';
 import ClientPage from './components/pages/ClientPage';
+import Footer from './components/Footer';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/programs" element={<ProgramPage />} />
           <Route path="/enroll" element={<EnrollForm />} />  
         </Routes>
+        <Footer/>
       </Router>
     </div>
   );

@@ -1,0 +1,68 @@
+.program-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.health-programs {
+  font-size: 35px;
+  font-weight: 400;
+  color: #282828;
+  margin-bottom: 20px;
+  font-style: oblique;
+}
+
+.no-program {
+  font-size: 22px;
+  color: #666;
+  margin-top: 20px;
+}
+
+/* programs-container */
+.programs-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding-bottom: 20px;
+}
+
+/* Make ProgramItem width consistent */
+.programs-container > .program-item {
+  flex: 0 0 auto;
+  width: 300px;
+}
+
+/* Style for each program card */
+.program-item {
+  border-radius: 10px;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  padding: 20px;
+}
+
+/* Mobile responsiveness */
+@media only screen and (max-width: 900px) {
+  .health-programs {
+    font-size: 28px;
+    text-align: center;
+    width: 100%;
+  }
+
+  .no-program {
+    font-size: 20px;
+    text-align: center;
+    width: 100%;
+  }
+
+  .programs-container {
+    justify-content: center;
+    gap: 15px;
+  }
+
+  .programs-container > .program-item {
+    width: 250px;
+  }
+}

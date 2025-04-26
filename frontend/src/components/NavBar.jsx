@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';  // Import NavLink for active link
-import logo from "../assets/TB.png";
+import logo from "../assets/logo.png";
 import ReorderIcon from '@mui/icons-material/Reorder';
+import '../styles/NavBar.css'
 
 function NavBar() {
   const [openLinks, setOpenLinks] = useState(false);
@@ -18,16 +19,16 @@ function NavBar() {
           <NavLink to="/">Home</NavLink>
           <NavLink to="/programs">Programs</NavLink>
           <NavLink to="/clients">Clients</NavLink>
-          <NavLink to="/add-client" activeClassName="active">New Client</NavLink>
-          <NavLink to="/enroll" activeClassName="active">Enroll client</NavLink>
+          <NavLink to="/add-client">New Client</NavLink>
+          <NavLink to="/enroll">Enroll client</NavLink>
         </div>
       </div>
       <div className="rightSide">
           <NavLink to="/">Home</NavLink>
           <NavLink to="/programs">Programs</NavLink>
           <NavLink to="/clients">Clients</NavLink>
-          <NavLink to="/add-client" activeClassName="active">New Client</NavLink>
-          <NavLink to="/enroll" activeClassName="active">Enroll client</NavLink>
+          <NavLink to="/add-client">New Client</NavLink>
+          <NavLink to="/enroll">Enroll client</NavLink>
         <button onClick={toggleNavbar}>
           <ReorderIcon />
         </button>

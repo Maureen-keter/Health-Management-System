@@ -1,0 +1,65 @@
+.ProgramPage {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    background-color: #f9f9f9;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+    padding: 50px;
+    box-sizing: border-box;
+}
+
+.programsContainer {
+    width: 100%;
+    max-width: 1400px;
+}
+
+.programsContainer h1 {
+    font-size: 60px;
+    font-weight: 300;
+    color: #282828;
+    font-style: oblique;
+    margin-bottom: 10px;
+}
+
+.programsContainer p {
+    font-size: 30px;
+    font-weight: lighter;
+    color: #444;
+    margin-bottom: 30px;
+}
+
+.programsContent {
+    display: flex;
+    flex-direction: column; /* Stack form and list vertically */
+    gap: 50px;
+    width: 100%;
+}
+
+.programsContent > * {
+    flex: 1;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* MOBILE RESPONSIVE */
+@media only screen and (max-width: 900px) {
+    .programsContent {
+        flex-direction: column; /* Stack vertically */
+        gap: 20px;
+    }
+
+    .programsContainer h1 {
+        font-size: 40px;
+        text-align: center;
+    }
+
+    .programsContainer p {
+        font-size: 25px;
+        text-align: center;
+    }
+}

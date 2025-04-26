@@ -1,5 +1,6 @@
 import React from 'react';
 import ProgramItem from './ProgramItem';
+import '../styles/ProgramList.css';
 
 function ProgramList({ programs, onEdit, onDelete }) {
   return (
@@ -9,14 +10,16 @@ function ProgramList({ programs, onEdit, onDelete }) {
       {programs.length === 0 ? (
         <p className="no-program">No Programs Available</p>
       ) : (
-        programs.map((program) => (
-          <ProgramItem
-            key={program.id}
-            program
-            onEdit={onEdit}
-            onDelete={onDelete}
-          />
-        ))
+        <div className="programs-container">
+          {programs.map((program) => (
+              <ProgramItem
+              key={program.id}
+              program={program}
+              onEdit={onEdit}
+              onDelete={onDelete}
+              />
+          ))}
+        </div>
       )}
     </div>
   );
