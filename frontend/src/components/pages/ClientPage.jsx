@@ -32,6 +32,13 @@ function ClientPage() {
     setClients(filteredClients);
   }
 
+  function handleClientClick(clientId) {
+    fetch(`${BASE_URL}/users/${clientId}`)
+      .then((res) => res.json())
+      .then((data) => setSelectedClient(data)) 
+      .catch((err) => console.error("Error fetching client details:", err));
+  }
+
   return (
     <div className="client-page">
       <h1>Client Management</h1>
