@@ -15,16 +15,35 @@ function ClientPage() {
       .catch((err) => console.error("Error fetching clients:", err));
   }, []); 
 
-
+  function handleAddClient(newClient) {
+    setClients([...clients, newClient]); 
+  }
+  function handleUpdateClient(updatedClient) {
+    const updatedClients = clients.map((client) =>
+      client.id === updatedClient.id ? updatedClient : client
+    );
+    setClients(updatedClients);
+  }
+  function handleDeleteClient(deletedClientId) {
+    const filteredClients = clients.filter(
+      (client) => client.id !== deletedClientId 
+    );
+    setClients(filteredClients);
+  }
 
   return (
     <div className="client-page">
       <h1>Client Management</h1>
-      <ClientList clients={clients}/>
-      <ClientForm />
-    </div>
       
-      )
+      <ClientForm onAddClient={handleAddClient} /> 
+      <ClientList
+        clients={clients}
+        onUpdateClient={handleUpdateClient}
+        onDeleteClient={handleDeleteClient}
+      />
+    </div>
+  );
 }
 
 export default ClientPage;
+
