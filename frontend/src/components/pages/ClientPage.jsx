@@ -49,6 +49,7 @@ function ClientPage() {
         onUpdateClient={handleUpdateClient}
         onDeleteClient={handleDeleteClient}
       />
+      {selectedClient && <ClientProfile client={selectedClient} />}
     </div>
   );
 }
