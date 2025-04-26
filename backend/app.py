@@ -10,7 +10,7 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 
-from controllers.users import Users, UserById, UserLogin, UserByToken,jwt
+from controllers.users import Users, UserById
 from controllers.programs import Programs, ProgramById
 from controllers.enrollments import Enrollments, EnrollmentById
 
@@ -20,13 +20,13 @@ app= Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI']=os.environ.get('DATABASE_URI')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False
 app.json.compact = False
-app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(hours=24)
+# app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(hours=24)
 app.config['SECRET_KEY'] =('tvbubvhriefjkwerty=')
 
 db.init_app(app)
 migrate=Migrate(app,db)
 
-jwt.init_app(app)
+# jwt.init_app(app)
 
 CORS(app)
 api=Api(app)
@@ -44,8 +44,8 @@ class Home(Resource):
 api.add_resource(Home, '/')
 api.add_resource(Users, '/users')
 api.add_resource(UserById, '/users/<int:id>')
-api.add_resource(UserLogin,'/login')
-api.add_resource(UserByToken,'/user-token')
+# api.add_resource(UserLogin,'/login')
+# api.add_resource(UserByToken,'/user-token')
 api.add_resource(Programs, '/programs')
 api.add_resource(ProgramById, '/programs/<int:id>')
 api.add_resource(Enrollments, '/enrollments')
