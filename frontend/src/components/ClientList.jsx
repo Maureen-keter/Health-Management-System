@@ -70,11 +70,30 @@ function ClientList({ clients, onUpdateClient, onDeleteClient, onClientClick }) 
 
   return (
     <div className="client-list-container">
-      
-      </div>
-
-      
+      <h2>Clients</h2>
+      <input
+        type="text"
+        placeholder="Search by email"
+        value={searchEmail}
+        onChange={(e) => setSearchEmail(e.target.value)}
+      />
+      <ul className="client-list">
+        {filteredClients.length === 0 ? (
+          <li>No clients found with that email</li>
+        ) : (
+          filteredClients.map((client) => (
+            <li key={client.id}>
+              {client.name} – {client.email}
+              <button onClick={() => onClientClick(client.id)}>View</button>
+              <button onClick={() => handleEditClick(client)}>Edit</button>
+              <button onClick={() => handleDelete(client.id)}>Delete</button>
+            </li>
+          ))
+        )}
+      </ul>
+    </div>
   );
 }
 
 export default ClientList;
+
