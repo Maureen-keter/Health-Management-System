@@ -48,6 +48,7 @@ function ClientPage() {
         clients={clients}
         onUpdateClient={handleUpdateClient}
         onDeleteClient={handleDeleteClient}
+        onClientClick={handleClientClick}
       />
       {selectedClient && <ClientProfile client={selectedClient} />}
     </div>
