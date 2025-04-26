@@ -47,7 +47,7 @@ function ClientList({ clients, onUpdateClient, onDeleteClient, onClientClick }) 
     e.preventDefault();
 
     fetch(`${BASE_URL}/users/${editingClientId}`, {
-      method: "PUT",
+      method: "PATCH",
       headers: {
         "Content-Type": "application/json",
       },
@@ -84,7 +84,7 @@ function ClientList({ clients, onUpdateClient, onDeleteClient, onClientClick }) 
           filteredClients.map((client) => (
             <li key={client.id}>
               {client.name} – {client.email}
-              <button onClick={() => onClientClick(client.id)}>View</button>
+              <button onClick={() => onClientClick(client)}>View</button>
               <button onClick={() => handleEditClick(client)}>Edit</button>
               <button onClick={() => handleDelete(client.id)}>Delete</button>
             </li>
