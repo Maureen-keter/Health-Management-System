@@ -19,6 +19,32 @@ function EnrollForm({ onEnroll }) {
       .then(setPrograms);
   }, []);
 
+  function handleChange(e) {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    fetch(`${BASE_URL}/enrollments`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        user_id: formData.clientId,
+        program_id: formData.programId
+      })
+    })
+      .then(res => res.json())
+      .then(data => {
+        onEnroll && onEnroll(data);
+        alert("Client enrolled successfully!");
+        setFormData({ clientId: "", programId: "" });
+      })
+      .catch(err => console.error("Error enrolling client:", err));
+  }
+
 
   return (
     <form  className="enrollment-form">
