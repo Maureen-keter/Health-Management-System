@@ -26,6 +26,16 @@ function ClientList({ clients, onUpdateClient, onDeleteClient, onClientClick }) 
       .catch((err) => console.error("Error deleting:", err));
   }
 
+  function handleEditClick(client) {
+    setEditingClientId(client.id);
+    setEditFormData({
+      name: client.name,
+      email: client.email,
+      contact: client.contact,
+      password: client.password,
+    });
+  }
+
   return (
     <div className="client-list-container">
       
