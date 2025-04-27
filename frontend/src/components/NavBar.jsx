@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';  // Import NavLink for active link
+import { NavLink } from 'react-router-dom'; 
 import logo from "../assets/logo.png";
 import ReorderIcon from '@mui/icons-material/Reorder';
 import '../styles/NavBar.css'
@@ -13,7 +13,7 @@ function NavBar() {
 
   return (
     <div className="navbar">
-      <div className="leftSide" id={openLinks ? "open" : "close"}>
+      <div className="leftSide" id={openLinks ? "open" : "close" }>
         <img src={logo} alt="logo" />
         <div className="hiddenLinks">
           <NavLink to="/">Home</NavLink>

@@ -22,8 +22,7 @@
   font-size: 90px;
   height: 60px;
   font-weight: 50;
-  color:#282828;
-  font-style: oblique;
+  color: black;
 }
 
 .headerContainer p {
@@ -57,6 +56,9 @@
   .home {
     justify-content: center;
     align-items: center;
+  }
+  .headerContainer h1,
+  .headerContainer p {
   }
 
   .headerContainer {
