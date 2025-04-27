@@ -1,6 +1,25 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useParams } from 'react-router-dom'; 
+import { BASE_URL } from "../api";
+import '../styles/ClientProfile.css';
 
-function ClientProfile({ client }) {
+function ClientProfile() {
+  const { clientId } = useParams(); 
+  const [client, setClient] = useState(null);
+
+  console.log(clientId)
+
+  useEffect(() => {
+    fetch(`${BASE_URL}/users/${clientId}`)
+      .then((res) => res.json())
+      .then((data) => setClient(data))
+      .catch((err) => console.error("Error fetching client details:", err));
+  }, [clientId]);  
+
+  if (!client) {
+    return <p>Loading...</p>;
+  }
+
   return (
     <div className="client-profile">
       <h3>Client Profile</h3>

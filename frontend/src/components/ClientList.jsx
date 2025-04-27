@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { BASE_URL } from "../api";
+import '../styles/ClientList.css';  
+import { Link } from 'react-router-dom';
 
-function ClientList({ clients, onUpdateClient, onDeleteClient, onClientClick }) {
-  
+function ClientList({ clients, onUpdateClient, onDeleteClient}) {
   const [searchEmail, setSearchEmail] = useState("");
   const [editingClientId, setEditingClientId] = useState(null);
   const [editFormData, setEditFormData] = useState({
@@ -16,8 +17,7 @@ function ClientList({ clients, onUpdateClient, onDeleteClient, onClientClick }) 
     client.email.toLowerCase().includes(searchEmail.toLowerCase())
   );
 
-   // Delete a client by ID
-   function handleDelete(clientId) {
+  function handleDelete(clientId) {
     fetch(`${BASE_URL}/users/${clientId}`, { method: "DELETE" })
       .then((res) => {
         if (res.ok) onDeleteClient(clientId);
@@ -35,6 +35,7 @@ function ClientList({ clients, onUpdateClient, onDeleteClient, onClientClick }) 
       password: client.password,
     });
   }
+
   function handleEditChange(e) {
     const { name, value } = e.target;
     setEditFormData((prev) => ({
@@ -67,26 +68,34 @@ function ClientList({ clients, onUpdateClient, onDeleteClient, onClientClick }) 
       .catch((err) => console.error("Error updating client:", err));
   }
 
-
   return (
     <div className="client-list-container">
-      <h2>Clients</h2>
+      <h2 className="client-list-title">Clients</h2>
+
       <input
+        className="search-input"
         type="text"
         placeholder="Search by email"
         value={searchEmail}
         onChange={(e) => setSearchEmail(e.target.value)}
       />
+
       <ul className="client-list">
         {filteredClients.length === 0 ? (
-          <li>No clients found with that email</li>
+          <li className="no-clients">No clients found with that email</li>
         ) : (
           filteredClients.map((client) => (
-            <li key={client.id}>
-              {client.name} – {client.email}
-              <button onClick={() => onClientClick(client)}>View</button>
-              <button onClick={() => handleEditClick(client)}>Edit</button>
-              <button onClick={() => handleDelete(client.id)}>Delete</button>
+            <li key={client.id} className="client-item">
+              <div className="client-info">
+                <span>{client.name}</span> – <span>{client.email}</span>
+              </div>
+              <div className="client-actions">
+                <Link to={`/client/${client.id}`}>                
+                <button>View</button>
+                </Link>
+                <button onClick={() => handleEditClick(client)}>Edit</button>
+                <button onClick={() => handleDelete(client.id)}>Delete</button>
+              </div>
             </li>
           ))
         )}
@@ -135,7 +144,7 @@ function ClientList({ clients, onUpdateClient, onDeleteClient, onClientClick }) 
               required
             />
           </label>
-          <button type="submit">Save Changes</button>
+          <button type="submit" className="save-btn">Save Changes</button>
         </form>
       )}
     </div>

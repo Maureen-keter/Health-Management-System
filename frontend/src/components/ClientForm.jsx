@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import { BASE_URL } from "../api";
+import '../styles/ClientForm.css'
 
-function ClientForm({ onAddProgram }) {
+function ClientForm({ onAddClient }) {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     password: "",
     contact: "",
   });
+  const [error, setError] = useState(""); 
 
   const { name, email, password, contact } = formData;
 
@@ -29,20 +31,32 @@ function ClientForm({ onAddProgram }) {
       },
       body: JSON.stringify(formData),
     })
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(`Failed to add client. Status: ${res.status}`);
+        }
+        return res.json();
+      })
       .then((newClient) => {
-        onAddProgram(newClient);
+        onAddClient(newClient); 
         setFormData({
           name: "",
           email: "",
           password: "",
           contact: "",
         });
+        setError("");  
+        window.alert("Client added successfully!"); 
       })
+      .catch((err) => {
+        setError(err.message); 
+      });
   }
 
   return (
     <form className="new-client" onSubmit={handleSubmit}>
+      {error && <div className="error-message">{error}</div>}
+
       <label>
         Name:
         <input

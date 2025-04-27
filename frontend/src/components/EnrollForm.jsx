@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { BASE_URL } from "../api";
+import '../styles/Enroll.css'
 
 function EnrollForm({ onEnroll }) {
   const [clients, setClients] = useState([]);

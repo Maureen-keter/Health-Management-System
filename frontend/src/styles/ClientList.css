@@ -1,0 +1,98 @@
+.client-list-container {
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .client-list-title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #253458;
+  }
+  
+  .search-input {
+    width: 100%;
+    padding: 0.5rem 1rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+  }
+  
+  .client-list {
+    list-style: none;
+    color:#1c2d3f;
+    padding: 0;
+  }
+  
+  .client-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .client-info {
+    font-weight: 500;
+  }
+  
+  .client-actions button {
+    margin-left: 0.5rem;
+    padding: 0.4rem 0.8rem;
+    background-color: #253458;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+  }
+  
+  .client-actions button:hover {
+    background-color: #1c2d3f;
+  }
+  
+  .no-clients {
+    color: #999;
+    font-style: italic;
+  }
+  
+  .edit-client-form {
+    margin-top: 2rem;
+    background-color: #f0f2f5;
+    padding: 1.5rem;
+    border-radius: 8px;
+  }
+  
+  .edit-client-form h3 {
+    margin-bottom: 1rem;
+  }
+  
+  .edit-client-form label {
+    display: block;
+    margin-bottom: 1rem;
+    font-weight: 600;
+  }
+  
+  .edit-client-form input {
+    width: 100%;
+    padding: 0.5rem;
+    margin-top: 0.3rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .save-btn {
+    background-color: #253458;
+    color: white;
+    padding: 0.6rem 1.2rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 1rem;
+  }
+  
+  .save-btn:hover {
+    background-color: #1c2d3f;
+  }
+  

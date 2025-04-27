@@ -7,6 +7,7 @@ import EnrollForm from './components/EnrollForm';
 import Home from './components/Home';
 import ClientPage from './components/pages/ClientPage';
 import Footer from './components/Footer';
+import ClientProfile from './components/ClientProfile'
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/add-client" element={<ClientForm />} />
           <Route path="/programs" element={<ProgramPage />} />
           <Route path="/enroll" element={<EnrollForm />} />  
+          <Route path="/client/:clientId" element={<ClientProfile/>} />
         </Routes>
         <Footer/>
       </Router>

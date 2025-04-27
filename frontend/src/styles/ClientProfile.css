@@ -1,0 +1,55 @@
+.client-profile {
+    width: 80%;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial', sans-serif;
+    color: #333;
+  }
+  
+  .client-profile h3 {
+    text-align: center;
+    color: #253458;
+  }
+  
+  .client-profile p {
+    font-size: 16px;
+    margin: 10px 0;
+  }
+  
+  .client-profile strong {
+    color: #253458;
+  }
+  
+  .client-profile h4 {
+    margin-top: 20px;
+    color: #253458;
+    font-size: 18px;
+    border-bottom: 2px solid #253458;
+    padding-bottom: 5px;
+  }
+  
+  .client-profile ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .client-profile ul li {
+    background-color: #f9f9f9;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .client-profile ul li strong {
+    font-size: 16px;
+  }
+  
+  .client-profile .no-programs {
+    color: #a9a9a9;
+    font-style: italic;
+  }
+  
