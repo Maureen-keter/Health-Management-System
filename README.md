@@ -147,6 +147,8 @@ The server will be available at:
 
 ## 📌 ✨ Future Enhancements
 
+-  Create Login and Sign up pages
+-  Implement authentication and password protection
 -  Add API rate limiting
 
 ---
