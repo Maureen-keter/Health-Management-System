@@ -31,7 +31,7 @@ program_names = [
 ]
 
 # Number of users to generate
-num_users = 10  # Adjust as needed
+num_users = 6
 
 # Start seeding
 with app.app_context():
@@ -61,10 +61,10 @@ with app.app_context():
 
     db.session.commit()
 
-    # Seed enrollments (each user enrolls in 2 random programs)
+  
     enrollments = []
     for user in users:
-        enrolled_programs = random.sample(programs, 2)  # Randomly pick 2 programs for each user
+        enrolled_programs = random.sample(programs, 3) 
         for program in enrolled_programs:
             enrollment = Enrollment(user_id=user.id, program_id=program.id, created_at=datetime.utcnow().date())
             enrollments.append(enrollment)
